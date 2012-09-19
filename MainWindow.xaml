@@ -2,18 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="366" Width="245" AllowsTransparency="True" WindowStyle="None"
-		ShowInTaskbar="True" SizeToContent="Height">
+		ShowInTaskbar="True" SizeToContent="Height" Loaded="Window_Loaded">
 	<Window.Background>
 		<SolidColorBrush Color="White" Opacity="0"/>
 	</Window.Background>
     <Border>
     	<Border.Background>
     		<RadialGradientBrush>
-    			<GradientStop Color="#FF042B78"/>
-    			<GradientStop Color="#FF2D3647" Offset="1"/>
+    			<GradientStop Color="#FF1E428D"/>
+    			<GradientStop Color="#FF585B60" Offset="1"/>
     		</RadialGradientBrush>
     	</Border.Background>
-    	<Expander Header="Expander" Style="{DynamicResource MainSuiteExpanderStyle}">
+    	<Expander x:Name="main_holder" Header="Expander" Style="{DynamicResource MainSuiteExpanderStyle}">
     		<Grid>
     			<Button Content="Button" Margin="48,133,58,118"/>
     		</Grid>
