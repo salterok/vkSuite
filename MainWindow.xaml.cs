@@ -36,6 +36,8 @@ namespace vkSuite {
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e) {
+			var groupDescription = new PropertyGroupDescription("Online");
+			friends_list.Items.GroupDescriptions.Add(groupDescription);
 			InitData();
 		}
 
@@ -44,13 +46,23 @@ namespace vkSuite {
 			vk = new VKApiManager(2691706, AccessRights.FRIENDS, true);
 			var resp = vk.users.Get(new long[] {vk.AuthorizationDetails.userId}, 
 				ProfileFields.Nickname | ProfileFields.PhotoMediumRec | ProfileFields.Online, null);
-			var image = Helper.GetImageFromUrl(resp.GetData("user/photo_medium_rec"));
+			var image = Helper.GetImageFromUrl(resp.GetSingleValue("user/photo_medium_rec"));
+			var friendsResponse = vk.friends.Get(ProfileFields.PhotoMediumRec, NameCase.Nom);
+			var friends = friendsResponse.GetObjectValues("user", "uid", "first_name", "last_name", "photo_medium_rec", "online");
 			main_holder.DataContext = new {
-				Nickname = resp.GetData("user/nickname"),
+				Nickname = resp.GetSingleValue("user/nickname"),
 				PresentImage = image,
-				ProfileUrl = String.Format("http://vk.com/id{0}", resp.GetData("user/uid"))
+				ProfileUrl = String.Format("http://vk.com/id{0}", resp.GetSingleValue("user/uid")),
+				Friends = from friend in friends
+						  select new {
+							  Uid = friend["uid"],
+							  Name = friend["first_name"],
+							  Surname = friend["last_name"],
+							  Online = friend["online"],
+							  Photo = Helper.GetImageFromUrl(friend["photo_medium_rec"]),
+							  ProfileUrl = String.Format("http://vk.com/id{0}", friend["uid"])
+						  }
 			};
-
 		}
 	}
 }
