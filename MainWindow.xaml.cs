@@ -21,6 +21,7 @@ namespace vkSuite {
 	public partial class MainWindow : Window {
 
 		VKApiManager vk;
+		DataWebContract dataContract = DataWebContract.Create();
 
 		public MainWindow() {
 			InitializeComponent();
@@ -42,8 +43,12 @@ namespace vkSuite {
 		}
 
 		private void InitData() {
-
-			vk = new VKApiManager(2691706, AccessRights.FRIENDS, true);
+			var auth = dataContract.GetObject("[auth]");
+			if (auth == null)
+				vk = new VKApiManager(2691706, AccessRights.FRIENDS, true);
+			else
+				vk = new VKApiManager(auth as VK.Authorization.AuthorizationDetails);
+			dataContract.AddObject("[auth]", vk.AuthorizationDetails);
 			var resp = vk.users.Get(new long[] {vk.AuthorizationDetails.userId}, 
 				ProfileFields.Nickname | ProfileFields.PhotoMediumRec | ProfileFields.Online, null);
 			var image = Helper.GetImageFromUrl(resp.GetSingleValue("user/photo_medium_rec"));
@@ -63,6 +68,10 @@ namespace vkSuite {
 							  ProfileUrl = String.Format("http://vk.com/id{0}", friend["uid"])
 						  }
 			};
+		}
+
+		private void friend_img_MouseDown(object sender, MouseButtonEventArgs e) {
+			System.Diagnostics.Process.Start((sender as Image).Tag as string);
 		}
 	}
 }

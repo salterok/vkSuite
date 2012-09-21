@@ -13,6 +13,7 @@
 # Build results
 #*.vshost.*
 [Dd]ebug/*
+Cache/
 [Rr]elease/
 *_i.c
 *_p.c

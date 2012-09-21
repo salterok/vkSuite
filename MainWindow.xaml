@@ -7,7 +7,7 @@
 		ShowInTaskbar="True" SizeToContent="Height" Loaded="Window_Loaded">
 	<Window.Resources>
 		<DataTemplate x:Key="FriendsListBoxItem">
-			<Grid Width="Auto" Height="40">
+			<Grid Width="Auto" Height="40" ScrollViewer.VerticalScrollBarVisibility="Auto">
 				<Grid.Style>
 					<Style TargetType="{x:Type Grid}">
 						<Style.Triggers>
@@ -22,8 +22,11 @@
 						</Style.Triggers>
 					</Style>
 				</Grid.Style>
-				<Image Margin="4,4,0,4" HorizontalAlignment="Left" Width="32"
-						Height="32" Source="{Binding Photo}" />
+				<Image x:Name="friend_img" Margin="4,4,0,4" HorizontalAlignment="Left" Width="32"
+Height="32"
+						Source="{Binding Photo}"
+						MouseDown="friend_img_MouseDown"
+						Tag="{Binding ProfileUrl}" />
 				<TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"
 						Text="{Binding Name}" VerticalAlignment="Stretch"
 						Margin="40,4,4,4" />
@@ -45,7 +48,7 @@
 			<Grid>
 				<ListBox x:Name="friends_list"
 						ItemTemplate="{DynamicResource FriendsListBoxItem}"
-						ItemsSource="{Binding Friends}" >
+						ItemsSource="{Binding Friends}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" >
 				</ListBox>
 			</Grid>
 		</Expander>
