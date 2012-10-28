@@ -58,7 +58,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChatWindow\ChatPage.cs" />
+    <Compile Include="ChatWindow\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatWindow\ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatWindow\EmojInfo.cs" />
+    <Compile Include="ChatWindow\Emotions.cs" />
+    <Compile Include="ChatWindow\EmotionTextBlock.cs" />
+    <Compile Include="ChatWindow\MessageEditor.xaml.cs">
+      <DependentUpon>MessageEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatWindow\VKMessage.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="VisualContracts\UserVContract.cs" />
+    <Compile Include="VisualContracts\MainHolderVContract.cs" />
+    <Page Include="ChatControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChatWindow\ChatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChatWindow\ChatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatWindow\MessageEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ExpanderHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainHolderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,11 +111,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChatControl.xaml.cs">
+      <DependentUpon>ChatControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataContract.cs" />
     <Compile Include="ExpanderHeader.xaml.cs">
       <DependentUpon>ExpanderHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="MainHolderControl.xaml.cs">
+      <DependentUpon>MainHolderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,6 +151,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Messages_Active.png" />
+    <Resource Include="Resources\Messages_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoji.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

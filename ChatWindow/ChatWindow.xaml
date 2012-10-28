@@ -1,0 +1,23 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:vkSuite" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="vkSuite.ChatWindow"
+        Title="ChatWindow" Height="400" Width="500" Loaded="Window_Loaded">
+	<Window.Resources>
+		<DataTemplate x:Key="ChatTabItem">
+			<Grid>
+				<local:ChatView Margin="8" DataContext="{Binding Messages}" />
+			</Grid>
+		</DataTemplate>
+		<DataTemplate x:Key="ChatHeaderItem">
+			<Grid>
+				<TextBlock Text="{Binding Uid}" />
+			</Grid>
+		</DataTemplate>
+	</Window.Resources>
+	<Border>
+		<TabControl x:Name="chatTab" 
+		ContentTemplate="{DynamicResource ChatTabItem}" 
+		ItemTemplate="{DynamicResource ChatHeaderItem}" />
+	</Border>
+</Window>
